@@ -96,3 +96,34 @@ SELECT first_name, last_name, sex
 FROM employees
 WHERE first_name = 'Hercules'
 AND last_name LIKE 'B%';
+
+SELECT employees.emp_no,
+employees.first_name,
+employees.last_name,
+departments.dept_name
+FROM employees
+INNER JOIN dept_emp ON
+(employees.emp_no = dept_emp.emp_no)
+	INNER JOIN departments 
+		ON (departments.dept_no = dept_emp.dept_no)
+		WHERE dept_name = 'Sales'
+		ORDER BY employees.emp_no;
+		
+SELECT employees.emp_no,
+employees.first_name,
+employees.last_name,
+departments.dept_name
+FROM employees
+INNER JOIN dept_emp ON
+(employees.emp_no = dept_emp.emp_no)
+	INNER JOIN departments 
+		ON (departments.dept_no = dept_emp.dept_no)
+		WHERE dept_name = 'Sales'
+		OR dept_name = 'Development'
+		ORDER BY employees.emp_no;
+
+SELECT last_name, COUNT(last_name) AS "last_name count"
+FROM employees
+GROUP BY last_name
+ORDER BY "last_name count" DESC;
+
